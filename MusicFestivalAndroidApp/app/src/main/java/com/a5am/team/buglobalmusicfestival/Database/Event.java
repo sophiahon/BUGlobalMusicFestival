@@ -1,10 +1,18 @@
-package com.a5am.team.buglobalmusicfestival.DateBase;
+package com.a5am.team.buglobalmusicfestival.Database;
+
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 
 /**
  * Created by pro on 2018/3/28.
+ *
+ * Serializable to make it able to put into bundle, or pass by intent.
  */
 
-public class Event {
+public class Event implements Serializable {
 
     public int id;
     public String event;
@@ -13,9 +21,7 @@ public class Event {
     public String date;
 
 
-    public Event() {
-
-    }
+    public Event() {}
 
     public Event(int id, String event, String artist, String place, String date) {
         this.id = id;
@@ -24,4 +30,6 @@ public class Event {
         this.place = place;
         this.date = date;
     }
+
+
 }

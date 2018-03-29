@@ -1,4 +1,4 @@
-package com.a5am.team.buglobalmusicfestival.DateBase;
+package com.a5am.team.buglobalmusicfestival.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
