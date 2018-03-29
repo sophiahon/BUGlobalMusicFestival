@@ -1,4 +1,4 @@
-package com.a5am.team.buglobalmusicfestival;
+package com.a5am.team.buglobalmusicfestival.Database;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.a5am.team.buglobalmusicfestival.DateBase.Event;
+import com.a5am.team.buglobalmusicfestival.R;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import java.util.List;
  *
  */
 
-public class EventLIstViewAdapter extends BaseAdapter {
+public class DatabaseTestListViewAdapter extends BaseAdapter {
 
     private Context context;
     private List<Event> eventList;
@@ -35,7 +35,7 @@ public class EventLIstViewAdapter extends BaseAdapter {
     }
 
 
-    public EventLIstViewAdapter(Context context, List<Event> eventList) {
+    public DatabaseTestListViewAdapter(Context context, List<Event> eventList) {
         this.context = context;
         this.eventList = eventList;
     }
@@ -66,7 +66,7 @@ public class EventLIstViewAdapter extends BaseAdapter {
         if (view != null){
             holder = (ViewHolder) view.getTag();
         }else {
-            view = LayoutInflater.from(context).inflate(R.layout.show_sql_data, null);
+            view = LayoutInflater.from(context).inflate(R.layout.database_test_list, null);
 
             holder = new ViewHolder();
             holder.txtID =  view.findViewById(R.id.txtID);
