@@ -19,12 +19,13 @@ public class Event implements Serializable {
     public int aid;
     public String place;
     public String date;
-    public String artist;
+//    public String artist;
+    public Artist artist;
 
 
     public Event() {}
 
-    public Event(int id, String event, int aid, String place, String date, String artist) {
+    public Event(int id, String event, int aid, String place, String date, Artist artist) {
         this.id = id;
         this.event = event;
         this.aid = aid;
@@ -32,6 +33,15 @@ public class Event implements Serializable {
         this.date = date;
         this.artist = artist;
     }
+
+    public String getEventName(){
+        return event;
+    }
+
+    public String getArtistCountry(){
+        return artist.country;
+    }
+
 
 
 }

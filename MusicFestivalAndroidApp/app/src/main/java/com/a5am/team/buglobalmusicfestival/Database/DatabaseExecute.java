@@ -148,7 +148,13 @@ public class DatabaseExecute {
         event.aid = (cursor.getInt(cursor.getColumnIndex("aid")));
         event.place = (cursor.getString(cursor.getColumnIndex("place")));
         event.date = (cursor.getString(cursor.getColumnIndex("date")));
-        event.artist = (cursor.getString(cursor.getColumnIndex("artist")));
+        Artist artist = new Artist();
+        artist.aid = event.aid;
+        artist.artist = (cursor.getString(cursor.getColumnIndex("artist")));
+        artist.country = (cursor.getString(cursor.getColumnIndex("country")));
+        artist.website = (cursor.getString(cursor.getColumnIndex("website")));
+        artist.spotify = (cursor.getString(cursor.getColumnIndex("spotify")));
+        event.artist = artist;
         return event;
     }
 
@@ -173,9 +179,7 @@ public class DatabaseExecute {
         try {
             db = eventsDBHelper.getReadableDatabase();
             // select *
-            String selectQuery = "SELECT e.id, e.event, e.place, e.date, a.aid, a.artist, a" +
-                    ".country, a.website, a.spotify " +
-                    " FROM " + DatabaseHelper.TABLE_NAME +
+            String selectQuery = "SELECT * FROM " + DatabaseHelper.TABLE_NAME +
                     " e, " +
                     DatabaseHelper.ARTIST_TABLE + " a WHERE e.aid=a.aid";
 //            cursor = db.query(DatabaseHelper.TABLE_NAME, EVENT_COLUMN, null, null, null, null, null);
