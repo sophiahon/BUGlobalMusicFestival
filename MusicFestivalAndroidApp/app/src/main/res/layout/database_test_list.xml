@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/txtID"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
         android:text="id" />
@@ -16,7 +16,7 @@
     <TextView
         android:id="@+id/txtEvent"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_weight="3"
         android:gravity="center"
         android:text="Event" />
@@ -24,7 +24,7 @@
     <TextView
         android:id="@+id/txtArtist"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_weight="2"
         android:gravity="center"
         android:text="Artist" />
@@ -32,7 +32,7 @@
     <TextView
         android:id="@+id/txtPlace"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_weight="2"
         android:gravity="center"
         android:text="Place" />
@@ -40,7 +40,7 @@
     <TextView
         android:id="@+id/txtDate"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_weight="2"
         android:gravity="center"
         android:text="Date" />
