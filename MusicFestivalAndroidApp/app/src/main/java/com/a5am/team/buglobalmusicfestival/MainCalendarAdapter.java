@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.a5am.team.buglobalmusicfestival.Database.DatabaseTestListViewAdapter;
 import com.a5am.team.buglobalmusicfestival.Database.Event;
 
 import java.util.ArrayList;
@@ -20,15 +22,22 @@ import java.util.List;
  */
 
 
-public class MainCalendarAdapter extends ArrayAdapter<MainCalendarEvents>{
+public class MainCalendarAdapter extends BaseAdapter {
 
-    private Context mc_Context;
-    private List<MainCalendarEvents> mc_Events = new ArrayList<>();
+    private Context context;
+    private List<Event> eventList;
 
-    public MainCalendarAdapter(@NonNull Context context, ArrayList<MainCalendarEvents> list){
-        super(context, 0, list);
-        mc_Context = context;
-        mc_Events = list;
+    public MainCalendarAdapter(Context context, List<Event> eventList){
+//        super(context, eventList);
+        this.context = context;
+        this.eventList = eventList;
+    }
+
+    public static class ViewHolder{
+        public TextView eventName;
+        public TextView artist;
+        public TextView country;
+        public TextView place;
     }
 
     @NonNull
@@ -36,20 +45,44 @@ public class MainCalendarAdapter extends ArrayAdapter<MainCalendarEvents>{
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
         View listItem = convertView;
         if (listItem == null){
-            listItem = LayoutInflater.from(mc_Context).inflate(R.layout.mc_eventlist, parent, false);
+            listItem = LayoutInflater.from(context).inflate(R.layout.mc_eventlist, parent, false);
         }
-        MainCalendarEvents currentEvent = mc_Events.get(position);
 
-        TextView name = (TextView) listItem.findViewById(R.id.tv_name);
-        name.setText(currentEvent.getName());
+        Event currentEvent = eventList.get(position);
+
+        TextView event = (TextView) listItem.findViewById(R.id.tv_event);
+        event.setText(currentEvent.event);
+
+        TextView artist = (TextView) listItem.findViewById(R.id.tv_artist);
+        artist.setText(currentEvent.artist.artist);
 
         TextView country = (TextView) listItem.findViewById(R.id.tv_country);
-        country.setText(currentEvent.getCountry());
+        country.setText(currentEvent.artist.country);
 
-        TextView venue = (TextView) listItem.findViewById(R.id.tv_venues);
-        venue.setText(currentEvent.getVenue());
+        TextView venue = (TextView) listItem.findViewById(R.id.tv_place);
+        venue.setText(currentEvent.place);
 
         return  listItem;
+    }
+
+    @Override
+    public int getCount() {
+        return eventList.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return eventList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
     }
 
 }

@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,25 +79,20 @@ public class MainActivity extends BaseNavActivity {
         // fetch all data
         eventList = eventExe.getAllDate();
 
-        listView = (ListView) findViewById(R.id.mcEventList);
-        ArrayList<MainCalendarEvents> eventList = new ArrayList<>();
-        eventList.add(new MainCalendarEvents("Jupiter & Okwess", "Country: Congo", "GSU"));
-        eventList.add(new MainCalendarEvents("Ladama", "Country: Latin America - Brazil, Colombia, Venezuela", "GSU"));
-        eventList.add(new MainCalendarEvents("Dina Elwedidi", "Country: Egypt", "CAS"));
-        eventList.add(new MainCalendarEvents("Orquesta El Macabeo", "Country: Puerto Rico", "GSU"));
-        eventList.add(new MainCalendarEvents("Zhou Family", "Country: China", "GSU"));
-        eventList.add(new MainCalendarEvents("Kaumakaiwa Kanaka'ole", "Country: Hawai'i", "CAS"));
+//        listView = (ListView) findViewById(R.id.mcEventList);
+//        ArrayList<MainCalendarEvents> eventList = new ArrayList<>();
+//        eventList.add(new MainCalendarEvents("Jupiter & Okwess", "Country: Congo", "GSU"));
+//        eventList.add(new MainCalendarEvents("Ladama", "Country: Latin America - Brazil, Colombia, Venezuela", "GSU"));
+//        eventList.add(new MainCalendarEvents("Dina Elwedidi", "Country: Egypt", "CAS"));
+//        eventList.add(new MainCalendarEvents("Orquesta El Macabeo", "Country: Puerto Rico", "GSU"));
+//        eventList.add(new MainCalendarEvents("Zhou Family", "Country: China", "GSU"));
+//        eventList.add(new MainCalendarEvents("Kaumakaiwa Kanaka'ole", "Country: Hawai'i", "CAS"));
 
-        mcAdapter = new MainCalendarAdapter(this, eventList);
-        listView.setAdapter(mcAdapter);
+        if (eventList != null){
+            mcAdapter = new MainCalendarAdapter(this, eventList);
+            listView.setAdapter(mcAdapter);
+        }
 
-//        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                cb.setChecked(true);
-//            }
-//
-//        });
     }
 
 //    //Checkbox
@@ -108,7 +104,8 @@ public class MainActivity extends BaseNavActivity {
 
 
     private void initComponent(){
-        // Component Init in here
+        // listViewDatabase is used to check database
+        listView = findViewById(R.id.mcEventList);
     }
 
 

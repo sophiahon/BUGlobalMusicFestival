@@ -32,6 +32,7 @@ public class DatabaseTestListViewAdapter extends BaseAdapter {
         public TextView txtArtist;
         public TextView txtPlace;
         public TextView txtDate;
+        public TextView txtArtCountry;
     }
 
 
@@ -57,8 +58,8 @@ public class DatabaseTestListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
-        Event events = eventList.get(position);
-        if (events == null){
+        Event event = eventList.get(position);
+        if (event == null){
             return null;
         }
 
@@ -72,17 +73,19 @@ public class DatabaseTestListViewAdapter extends BaseAdapter {
             holder.txtID =  view.findViewById(R.id.txtID);
             holder.txtEvent = view.findViewById(R.id.txtEvent);
             holder.txtArtist = view.findViewById(R.id.txtArtist);
+            holder.txtArtCountry = view.findViewById(R.id.txtArtCountry);
             holder.txtPlace = view.findViewById(R.id.txtPlace);
             holder.txtDate = view.findViewById(R.id.txtDate);
 
             view.setTag(holder);
         }
 
-        holder.txtID.setText(events.id + "");
-        holder.txtEvent.setText(events.event);
-        holder.txtArtist.setText(events.artist);
-        holder.txtPlace.setText(events.place);
-        holder.txtDate.setText(events.date);
+        holder.txtID.setText(event.id + "");
+        holder.txtEvent.setText(event.event);
+        holder.txtArtist.setText(event.artist.artist);
+        holder.txtArtCountry.setText(event.artist.country);
+        holder.txtPlace.setText(event.place);
+        holder.txtDate.setText(event.date);
 
         return view;
     }
