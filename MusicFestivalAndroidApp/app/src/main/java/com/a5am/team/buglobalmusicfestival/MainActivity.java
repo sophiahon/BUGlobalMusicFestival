@@ -51,6 +51,8 @@ public class MainActivity extends BaseNavActivity {
     private ActionBarDrawerToggle mToggle;
     private FrameLayout mFrame;
 
+    private ListView listView;
+    private MainCalendarAdapter mcAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,18 @@ public class MainActivity extends BaseNavActivity {
 
         // fetch all data
         eventList = eventExe.getAllDate();
+
+        listView = (ListView) findViewById(R.id.mcEventList);
+        ArrayList<MainCalendarEvents> eventList = new ArrayList<>();
+        eventList.add(new MainCalendarEvents("Jupiter & Okwess", "Congo", "GSU"));
+        eventList.add(new MainCalendarEvents("Ladama", "Latin America - Brazil, Colombia, Venezuela", "GSU"));
+        eventList.add(new MainCalendarEvents("Dina Elwedidi", "Egypt", "CAS"));
+        eventList.add(new MainCalendarEvents("Orquesta El Macabeo", "Puerto Rico", "GSU"));
+        eventList.add(new MainCalendarEvents("Zhou Family", "China", "GSU"));
+        eventList.add(new MainCalendarEvents("Kaumakaiwa Kanaka'ole", "Hawai'i", "CAS"));
+
+        mcAdapter = new MainCalendarAdapter(this, eventList);
+        listView.setAdapter(mcAdapter);
     }
 
 
