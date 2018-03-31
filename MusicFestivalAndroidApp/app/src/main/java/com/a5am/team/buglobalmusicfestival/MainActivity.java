@@ -74,12 +74,12 @@ public class MainActivity extends BaseNavActivity {
 
         listView = (ListView) findViewById(R.id.mcEventList);
         ArrayList<MainCalendarEvents> eventList = new ArrayList<>();
-        eventList.add(new MainCalendarEvents("Jupiter & Okwess", "Congo", "GSU"));
-        eventList.add(new MainCalendarEvents("Ladama", "Latin America - Brazil, Colombia, Venezuela", "GSU"));
-        eventList.add(new MainCalendarEvents("Dina Elwedidi", "Egypt", "CAS"));
-        eventList.add(new MainCalendarEvents("Orquesta El Macabeo", "Puerto Rico", "GSU"));
-        eventList.add(new MainCalendarEvents("Zhou Family", "China", "GSU"));
-        eventList.add(new MainCalendarEvents("Kaumakaiwa Kanaka'ole", "Hawai'i", "CAS"));
+        eventList.add(new MainCalendarEvents("Jupiter & Okwess", "Country: Congo", "GSU"));
+        eventList.add(new MainCalendarEvents("Ladama", "Country: Latin America - Brazil, Colombia, Venezuela", "GSU"));
+        eventList.add(new MainCalendarEvents("Dina Elwedidi", "Country: Egypt", "CAS"));
+        eventList.add(new MainCalendarEvents("Orquesta El Macabeo", "Country: Puerto Rico", "GSU"));
+        eventList.add(new MainCalendarEvents("Zhou Family", "Country: China", "GSU"));
+        eventList.add(new MainCalendarEvents("Kaumakaiwa Kanaka'ole", "Country: Hawai'i", "CAS"));
 
         mcAdapter = new MainCalendarAdapter(this, eventList);
         listView.setAdapter(mcAdapter);
