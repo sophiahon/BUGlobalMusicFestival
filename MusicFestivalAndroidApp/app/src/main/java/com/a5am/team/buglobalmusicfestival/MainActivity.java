@@ -14,7 +14,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -54,15 +57,18 @@ public class MainActivity extends BaseNavActivity {
 
     private ListView listView;
     private MainCalendarAdapter mcAdapter;
+    private CheckBox cb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        cb = findViewById(R.id.cb);
+
         // init database
         eventExe = new DatabaseExecute(this);
-        if (! eventExe.isDataExist()){
+        if (!eventExe.isDataExist()) {
             eventExe.initTable();
         }
 
@@ -86,7 +92,15 @@ public class MainActivity extends BaseNavActivity {
             mcAdapter = new MainCalendarAdapter(this, eventList);
             listView.setAdapter(mcAdapter);
         }
+
     }
+
+//    //Checkbox
+//    public void onCheckboxClicked (View view){
+//        if (cb.isChecked()){
+//            //add to personal planner
+//        }
+//    }
 
 
     private void initComponent(){
