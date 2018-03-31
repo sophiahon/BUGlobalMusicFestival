@@ -2,6 +2,7 @@ package com.a5am.team.buglobalmusicfestival.Database;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -34,6 +35,7 @@ public class DatabaseExecute {
     public DatabaseExecute(Context context) {
         this.context = context;
         eventsDBHelper = new DatabaseHelper(context);
+
     }
 
     /**
