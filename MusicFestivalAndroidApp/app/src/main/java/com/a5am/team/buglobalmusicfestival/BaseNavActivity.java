@@ -201,8 +201,7 @@ public class BaseNavActivity extends AppCompatActivity {
                                 .LENGTH_LONG).show();
                         break;
                     case R.id.nav_artInfo:
-                        Toast.makeText(getApplicationContext(), "No Artist Activity for now",Toast
-                                .LENGTH_LONG).show();
+                        activityClass = ArtistInfo.class;
                         break;
                     case R.id.nav_databaseTest:
                         activityClass = DatabaseTestActivity.class;
