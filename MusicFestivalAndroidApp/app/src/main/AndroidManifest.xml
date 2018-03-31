@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:label="@string/nav_lineUp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,8 +18,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Database.DatabaseTestActivity">
-            
+        <activity android:name=".Database.DatabaseTestActivity"
+            android:label="@string/nav_dbTest">
+
         </activity>
     </application>
 
