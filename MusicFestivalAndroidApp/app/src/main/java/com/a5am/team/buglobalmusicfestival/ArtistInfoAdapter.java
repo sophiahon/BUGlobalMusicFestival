@@ -14,49 +14,33 @@ import com.a5am.team.buglobalmusicfestival.Database.Event;
 import java.util.List;
 
 /**
- * Created by sophiahon on 3/31/18.
+ * Created by pro on 2018/3/31.
  */
 
-
-public class MainCalendarAdapter extends BaseAdapter {
+public class ArtistInfoAdapter extends BaseAdapter {
 
     private Context context;
     private List<Event> eventList;
 
-    public MainCalendarAdapter(Context context, List<Event> eventList){
+    public ArtistInfoAdapter(Context context, List<Event> eventList){
 //        super(context, eventList);
         this.context = context;
         this.eventList = eventList;
     }
 
-    public static class ViewHolder{
-        public TextView eventName;
-        public TextView artist;
-        public TextView country;
-        public TextView place;
-    }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
         View listItem = convertView;
         if (listItem == null){
-            listItem = LayoutInflater.from(context).inflate(R.layout.mainevent_list, parent, false);
+            listItem = LayoutInflater.from(context).inflate(R.layout.artist_list, parent, false);
         }
 
         Event currentEvent = eventList.get(position);
 
-        TextView event = (TextView) listItem.findViewById(R.id.tv_event);
-        event.setText(currentEvent.event);
-
-        TextView artist = (TextView) listItem.findViewById(R.id.tv_artist);
-        artist.setText(currentEvent.artist.artist);
-
-        TextView country = (TextView) listItem.findViewById(R.id.tv_country);
-        country.setText(currentEvent.artist.country);
-
-        TextView venue = (TextView) listItem.findViewById(R.id.tv_place);
-        venue.setText(currentEvent.place);
+        TextView event = (TextView) listItem.findViewById(R.id.tv_artist);
+        event.setText(currentEvent.artist.artist);
 
         return  listItem;
     }
@@ -80,5 +64,4 @@ public class MainCalendarAdapter extends BaseAdapter {
     public boolean isEnabled(int position) {
         return false;
     }
-
 }
