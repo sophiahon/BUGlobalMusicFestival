@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Make the version of the DB if the database updated
-    private static final int DB_VERSION = 6;
+    private static final int DB_VERSION = 7;
     private static final String DB_NAME = "myTest.db";
     public static final String TABLE_NAME = "Events";
     public static final String ARTIST_TABLE = "Artists";

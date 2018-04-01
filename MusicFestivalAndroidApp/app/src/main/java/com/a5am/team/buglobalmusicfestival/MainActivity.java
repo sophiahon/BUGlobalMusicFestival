@@ -11,9 +11,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -53,15 +57,18 @@ public class MainActivity extends BaseNavActivity {
 
     private ListView listView;
     private MainCalendarAdapter mcAdapter;
+    private CheckBox cb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        cb = findViewById(R.id.cb);
+
         // init database
         eventExe = new DatabaseExecute(this);
-        if (! eventExe.isDataExist()){
+        if (!eventExe.isDataExist()) {
             eventExe.initTable();
         }
 
@@ -72,22 +79,33 @@ public class MainActivity extends BaseNavActivity {
         // fetch all data
         eventList = eventExe.getAllDate();
 
-        listView = (ListView) findViewById(R.id.mcEventList);
-        ArrayList<MainCalendarEvents> eventList = new ArrayList<>();
-        eventList.add(new MainCalendarEvents("Jupiter & Okwess", "Country: Congo", "GSU"));
-        eventList.add(new MainCalendarEvents("Ladama", "Country: Latin America - Brazil, Colombia, Venezuela", "GSU"));
-        eventList.add(new MainCalendarEvents("Dina Elwedidi", "Country: Egypt", "CAS"));
-        eventList.add(new MainCalendarEvents("Orquesta El Macabeo", "Country: Puerto Rico", "GSU"));
-        eventList.add(new MainCalendarEvents("Zhou Family", "Country: China", "GSU"));
-        eventList.add(new MainCalendarEvents("Kaumakaiwa Kanaka'ole", "Country: Hawai'i", "CAS"));
+//        listView = (ListView) findViewById(R.id.mcEventList);
+//        ArrayList<MainCalendarEvents> eventList = new ArrayList<>();
+//        eventList.add(new MainCalendarEvents("Jupiter & Okwess", "Country: Congo", "GSU"));
+//        eventList.add(new MainCalendarEvents("Ladama", "Country: Latin America - Brazil, Colombia, Venezuela", "GSU"));
+//        eventList.add(new MainCalendarEvents("Dina Elwedidi", "Country: Egypt", "CAS"));
+//        eventList.add(new MainCalendarEvents("Orquesta El Macabeo", "Country: Puerto Rico", "GSU"));
+//        eventList.add(new MainCalendarEvents("Zhou Family", "Country: China", "GSU"));
+//        eventList.add(new MainCalendarEvents("Kaumakaiwa Kanaka'ole", "Country: Hawai'i", "CAS"));
 
-        mcAdapter = new MainCalendarAdapter(this, eventList);
-        listView.setAdapter(mcAdapter);
+        if (eventList != null){
+            mcAdapter = new MainCalendarAdapter(this, eventList);
+            listView.setAdapter(mcAdapter);
+        }
+
     }
+
+//    //Checkbox
+//    public void onCheckboxClicked (View view){
+//        if (cb.isChecked()){
+//            //add to personal planner
+//        }
+//    }
 
 
     private void initComponent(){
-        // Component Init in here
+        // listViewDatabase is used to check database
+        listView = findViewById(R.id.mcEventList);
     }
 
 

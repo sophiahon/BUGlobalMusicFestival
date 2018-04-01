@@ -25,7 +25,12 @@
             <ListView
                 android:id="@+id/mcEventList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:divider="#ffffff"
+                android:dividerHeight="4dip"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false" />
+
         </FrameLayout>
 
     </RelativeLayout>
