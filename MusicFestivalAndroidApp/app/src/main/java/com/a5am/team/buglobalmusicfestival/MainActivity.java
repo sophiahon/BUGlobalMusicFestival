@@ -1,6 +1,7 @@
 package com.a5am.team.buglobalmusicfestival;
 
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.a5am.team.buglobalmusicfestival.Database.DatabaseExecute;
 import com.a5am.team.buglobalmusicfestival.Database.DatabaseTestActivity;
@@ -95,12 +97,18 @@ public class MainActivity extends BaseNavActivity {
 
     }
 
-//    //Checkbox
-//    public void onCheckboxClicked (View view){
-//        if (cb.isChecked()){
-//            //add to personal planner
-//        }
-//    }
+    //Checkbox
+    public void onCheckboxClicked (View view){
+        boolean checked = ((CheckBox) view).isChecked();
+        switch ((view.getId())){
+            case R.id.cb:
+                if (checked){
+                    Toast.makeText(this,"checkbox checked",Toast.LENGTH_LONG).show();
+                    //add to personal planner
+                }
+                break;
+        }
+    }
 
 
     private void initComponent(){

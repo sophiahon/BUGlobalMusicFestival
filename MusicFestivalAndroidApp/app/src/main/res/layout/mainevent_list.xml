@@ -56,9 +56,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_place"
-        android:onClick="onCheckboxClicked"
         android:paddingBottom="10dp"
-        android:text="Move to Personal Planner"
+        android:text="@string/move"
         android:textAlignment="viewStart" />
 
 </RelativeLayout>
