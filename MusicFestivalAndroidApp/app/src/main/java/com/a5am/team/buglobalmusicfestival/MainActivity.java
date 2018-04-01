@@ -66,8 +66,6 @@ public class MainActivity extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cb = findViewById(R.id.cb);
-
         // init database
         eventExe = new DatabaseExecute(this);
         if (!eventExe.isDataExist()) {
@@ -99,10 +97,12 @@ public class MainActivity extends BaseNavActivity {
 
     //Checkbox
     public void onCheckboxClicked (View view){
-        boolean checked = ((CheckBox) view).isChecked();
+        cb = findViewById(R.id.cb);
+        boolean checked = cb.isChecked();
         switch ((view.getId())){
             case R.id.cb:
                 if (checked){
+                    cb.setChecked(true);
                     Toast.makeText(this,"checkbox checked",Toast.LENGTH_LONG).show();
                     //add to personal planner
                 }
