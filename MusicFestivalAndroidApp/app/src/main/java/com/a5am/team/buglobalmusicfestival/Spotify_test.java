@@ -23,8 +23,9 @@ import android.widget.ListView;
 
 public class Spotify_test extends BaseNavActivity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback{
-    private static final String CLIENT_ID = "11dc844e73034ce09b80e978c27a6931";
+    private static final String CLIENT_ID = "11dc844e730bbb34ce09b80e978c27a6931";
     private static final String REDIRECT_URI = "myapp://callback";
+    
     private Player mPlayer;
     private static final int REQUEST_CODE = 1337;
 
