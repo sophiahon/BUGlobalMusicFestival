@@ -6,6 +6,7 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="nav_lineUp">"Lineup"</string>
+    <string name="nav_plan">Personal Plan</string>
     <string name="nav_map">"Location Map"</string>
     <string name="nav_artist">Artist Info</string>
     <string name="nav_dbTest">Database Test (for dev)</string>
