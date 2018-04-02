@@ -16,6 +16,11 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/nav_lineUp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity
@@ -25,11 +30,7 @@
             android:name=".ArtistInfo"
             android:label="Artist introduction"></activity>
         <activity android:name=".youtube_test">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

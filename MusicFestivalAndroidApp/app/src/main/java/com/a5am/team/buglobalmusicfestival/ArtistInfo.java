@@ -35,6 +35,14 @@ public class ArtistInfo extends BaseNavActivity{
                 "Zhou Family",
                 "Kaumakaiwa Kanaka'ole"
         };
+        String[] ytb_vids = new String[] {
+                "UI6Dweisqj4",
+                "SejIE1T55OU",
+                "z3CxVE_fB4c",
+                "3nSKbn3F0mY",
+                "zTz1v8aJeKg",
+                "_sKs8CNNO2A"
+        };
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,android.R.id.text1,
 //                value);
 
