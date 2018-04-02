@@ -21,13 +21,10 @@
     <item android:id="@+id/nav_databaseTest"
         android:title="@string/nav_dbTest" />
 
-<<<<<<< HEAD
-    <item android:id="@+id/nav_Youtube_test"
-        android:title="YouTube test" />
-
-=======
     <item android:id="@+id/nav_spotify"
         android:title="SpotifyTest" />
->>>>>>> 0e81507b8ee5c5c0c3455af8b95582c3312a3268
+
+    <item android:id="@+id/nav_youtube_test"
+        android:title="YoutubeTest" />
 
 </menu>
