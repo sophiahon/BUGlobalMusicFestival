@@ -1,5 +1,6 @@
 package com.a5am.team.buglobalmusicfestival;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -96,7 +98,7 @@ public class MainActivity extends BaseNavActivity {
     }
 
     //Checkbox
-    public void onCheckboxClicked (View view){
+    public void onCheckboxClicked (AdapterView<?> parent, View view, int position, long id){
         cb = findViewById(R.id.cb);
         boolean checked = cb.isChecked();
         switch ((view.getId())){
@@ -104,7 +106,13 @@ public class MainActivity extends BaseNavActivity {
                 if (checked){
                     cb.setChecked(true);
                     Toast.makeText(this,"checkbox checked",Toast.LENGTH_LONG).show();
+
+                    long itemID = parent.getItemIdAtPosition(position).getItemID();
+
                     //add to personal planner
+                    Intent i = new Intent(MainActivity.this, PersonalPlanner.class);
+                    i.putExtra("event", itemID);
+                    startActivity(i);
                 }
                 break;
         }
