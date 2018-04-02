@@ -129,7 +129,7 @@ public class MainActivity extends BaseNavActivity implements
     }
 
     //Checkbox
-    public void onCheckboxClicked (AdapterView<?> parent, View view, int position, long id){
+    public void onCheckboxClicked (View view){
         cb = findViewById(R.id.cb);
         boolean checked = cb.isChecked();
         switch ((view.getId())){
@@ -137,6 +137,10 @@ public class MainActivity extends BaseNavActivity implements
                 if (checked){
                     cb.setChecked(true);
                     Toast.makeText(this,"checkbox checked",Toast.LENGTH_LONG).show();
+
+                    Intent i = new Intent(MainActivity.this,PersonalPlanner.class);
+                    i.putExtra("event", view.getId());
+                    startActivity(i);
 
 //                    //add to personal planner
 //                    long itemID = parent.getItemIdAtPosition(position).getItemID();
