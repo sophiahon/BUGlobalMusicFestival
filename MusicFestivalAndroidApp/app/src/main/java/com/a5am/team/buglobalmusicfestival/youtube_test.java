@@ -13,19 +13,18 @@ import com.google.android.youtube.player.YouTubePlayerView;
 
 
 
-public class youtube_test extends YouTubeBaseActivity{
+public class youtube_test extends YouTubeBaseActivity {
 
     private Button btn;
     private YouTubePlayerView ytb;
     private YouTubePlayer.OnInitializedListener onInitializedListener;
     private final String API_KEY = "AIzaSyBOitEsuiC4-Hbh8EJOMhAPIbJ0tQ8GS3U";
-    private final String VIDEO_CODE ="zTz1v8aJeKg";
+    private final String VIDEO_CODE = "zTz1v8aJeKg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube_test);
-
 
         btn = findViewById(R.id.btn);
         ytb = (YouTubePlayerView) findViewById(R.id.ytb);
@@ -49,5 +48,4 @@ public class youtube_test extends YouTubeBaseActivity{
             }
         });
     }
-
 }
