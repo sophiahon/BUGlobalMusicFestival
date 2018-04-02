@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.a5am.team.buglobalmusicfestival">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
         android:allowBackup="true"
@@ -10,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:label="@string/nav_lineUp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,26 +22,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Database.DatabaseTestActivity"
+            android:label="@string/nav_dbTest" />
+        <activity
+            android:name=".ArtistInfo"
+            android:label="Artist introduction" />
 
-        <activity android:name=".Database.DatabaseTestActivity"
-            android:label="@string/nav_dbTest">
-
-        </activity>
-
-        <activity android:name=".ArtistInfo"
-            android:label="Artist introduction">
-
-        </activity>
+        <activity android:name=".Spotify_test"
+            android:label="Spotify_Test"/>
 
         <activity
             android:name="com.spotify.sdk.android.authentication.LoginActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-
-
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
     </application>
-
-    <uses-permission android:name="android.permission.READ_CALENDAR" />
-    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
 </manifest>
