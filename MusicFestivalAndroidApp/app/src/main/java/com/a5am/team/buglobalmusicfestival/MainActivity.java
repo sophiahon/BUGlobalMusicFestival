@@ -1,6 +1,8 @@
 package com.a5am.team.buglobalmusicfestival;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -15,12 +17,14 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.a5am.team.buglobalmusicfestival.Database.DatabaseExecute;
 import com.a5am.team.buglobalmusicfestival.Database.DatabaseTestActivity;
@@ -30,6 +34,22 @@ import com.a5am.team.buglobalmusicfestival.Database.DatabaseTestListViewAdapter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+//for spotify
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import com.spotify.sdk.android.authentication.AuthenticationClient;
+import com.spotify.sdk.android.authentication.AuthenticationRequest;
+import com.spotify.sdk.android.authentication.AuthenticationResponse;
+import com.spotify.sdk.android.player.Config;
+import com.spotify.sdk.android.player.ConnectionStateCallback;
+import com.spotify.sdk.android.player.Error;
+import com.spotify.sdk.android.player.Player;
+import com.spotify.sdk.android.player.PlayerEvent;
+import com.spotify.sdk.android.player.Spotify;
+import com.spotify.sdk.android.player.SpotifyPlayer;
 
 
 
@@ -43,7 +63,8 @@ import java.util.List;
  */
 
 
-public class MainActivity extends BaseNavActivity {
+public class MainActivity extends BaseNavActivity implements
+        SpotifyPlayer.NotificationCallback, ConnectionStateCallback{
 
 
     private static final String TAG = "MAIN";
@@ -55,16 +76,20 @@ public class MainActivity extends BaseNavActivity {
     private ActionBarDrawerToggle mToggle;
     private FrameLayout mFrame;
 
+
+    private static final String CLIENT_ID = "secrete";
+    private static final String REDIRECT_URI = "secrete";
+    private Player mPlayer;
+    private static final int REQUEST_CODE = 1337;
     private ListView listView;
     private MainCalendarAdapter mcAdapter;
     private CheckBox cb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        cb = findViewById(R.id.cb);
 
         // init database
         eventExe = new DatabaseExecute(this);
@@ -78,6 +103,14 @@ public class MainActivity extends BaseNavActivity {
 
         // fetch all data
         eventList = eventExe.getAllDate();
+
+
+        //Spotify authentication
+        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID, AuthenticationResponse.Type.TOKEN, REDIRECT_URI);
+        builder.setScopes(new String[]{"user-read-private", "streaming"});
+        AuthenticationRequest request = builder.build();
+
+        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
 
 //        listView = (ListView) findViewById(R.id.mcEventList);
 //        ArrayList<MainCalendarEvents> eventList = new ArrayList<>();
@@ -95,12 +128,31 @@ public class MainActivity extends BaseNavActivity {
 
     }
 
-//    //Checkbox
-//    public void onCheckboxClicked (View view){
-//        if (cb.isChecked()){
-//            //add to personal planner
-//        }
-//    }
+    //Checkbox
+    public void onCheckboxClicked (View view){
+        cb = findViewById(R.id.cb);
+        boolean checked = cb.isChecked();
+        switch ((view.getId())){
+            case R.id.cb:
+                if (checked){
+                    cb.setChecked(true);
+                    Toast.makeText(this,"checkbox checked",Toast.LENGTH_LONG).show();
+
+                    Intent i = new Intent(MainActivity.this,PersonalPlanner.class);
+                    i.putExtra("event", view.getId());
+                    startActivity(i);
+
+//                    //add to personal planner
+//                    long itemID = parent.getItemIdAtPosition(position).getItemID();
+//                    int itemID = mcAdapter.getItemId(position);
+//                    Intent i = new Intent(MainActivity.this, PersonalPlanner.class);
+//                    i.putExtra("event", itemID);
+//                    startActivity(i);
+                }
+                break;
+        }
+
+    }
 
 
     private void initComponent(){
@@ -109,6 +161,84 @@ public class MainActivity extends BaseNavActivity {
     }
 
 
+/////This is the code for Spotify
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if (requestCode == REQUEST_CODE) {
+            AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
+            if (response.getType() == AuthenticationResponse.Type.TOKEN) {
+                Config playerConfig = new Config(this, response.getAccessToken(), CLIENT_ID);
+                Spotify.getPlayer(playerConfig, this, new SpotifyPlayer.InitializationObserver() {
+                    @Override
+                    public void onInitialized(SpotifyPlayer spotifyPlayer) {
+                        mPlayer = spotifyPlayer;
+                        mPlayer.addConnectionStateCallback(MainActivity.this);
+                        mPlayer.addNotificationCallback(MainActivity.this);
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        Log.e("MainActivity", "Could not initialize player: " + throwable.getMessage());
+                    }
+                });
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        Spotify.destroyPlayer(this);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPlaybackEvent(PlayerEvent playerEvent) {
+        Log.d("MainActivity", "Playback event received: " + playerEvent.name());
+        switch (playerEvent) {
+            // Handle event type as necessary
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onPlaybackError(Error error) {
+        Log.d("MainActivity", "Playback error received: " + error.name());
+        switch (error) {
+            // Handle error type as necessary
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onLoggedIn() {
+        Log.d("MainActivity", "User logged in");
+        mPlayer.playUri(null, "spotify:track:2TpxZ7JUBn3uw46aR7qd6V", 0, 0);
+    }
+
+    @Override
+    public void onLoggedOut() {
+        Log.d("MainActivity", "User logged out");
+    }
+
+    @Override
+    public void onLoginFailed(Error var1) {
+        Log.d("MainActivity", "Login failed");
+    }
+
+    @Override
+    public void onTemporaryError() {
+        Log.d("MainActivity", "Temporary error occurred");
+    }
+
+    @Override
+    public void onConnectionMessage(String message) {
+        Log.d("MainActivity", "Received connection message: " + message);
+    }
     /**
      * Previous trying of nav Drawer.
      * Don't delete for now
