@@ -3,7 +3,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
+import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
@@ -23,8 +23,8 @@ import android.widget.ListView;
 
 public class Spotify_test extends BaseNavActivity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback{
-    private static final String CLIENT_ID = "11dc844e73034ce09b80e978c27a6931";
-    private static final String REDIRECT_URI = "myapp://callback";
+    private static final String CLIENT_ID = "secrete";
+    private static final String REDIRECT_URI = "secrete";
     private Player mPlayer;
     private static final int REQUEST_CODE = 1337;
 
@@ -70,6 +70,7 @@ public class Spotify_test extends BaseNavActivity implements
     @Override
     protected void onDestroy() {
         Spotify.destroyPlayer(this);
+        Log.e("MainActivity", "!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         super.onDestroy();
     }
 
