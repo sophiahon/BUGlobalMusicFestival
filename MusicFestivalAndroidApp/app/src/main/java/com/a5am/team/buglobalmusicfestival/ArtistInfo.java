@@ -7,12 +7,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.a5am.team.buglobalmusicfestival.Database.Event;
+
+import java.util.List;
+
 /**
  * Created by ruochen on 3/31/18.
  */
 
 public class ArtistInfo extends BaseNavActivity{
+
     private ListView listView_of_artists;
+
+    private ArtistInfoAdapter listAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +35,14 @@ public class ArtistInfo extends BaseNavActivity{
                 "Zhou Family",
                 "Kaumakaiwa Kanaka'ole"
         };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,android.R.id.text1,
-                value);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,android.R.id.text1,
+//                value);
 
-        listView_of_artists.setAdapter(adapter);
+//        listView_of_artists.setAdapter(adapter);
+        if (MainActivity.eventList != null){
+            listAdapter = new ArtistInfoAdapter(this, MainActivity.eventList);
+            listView_of_artists.setAdapter(listAdapter);
+        }
 
         listView_of_artists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

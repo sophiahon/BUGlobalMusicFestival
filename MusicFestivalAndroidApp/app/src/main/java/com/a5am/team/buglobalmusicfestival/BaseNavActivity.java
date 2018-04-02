@@ -196,6 +196,11 @@ public class BaseNavActivity extends AppCompatActivity {
                     case R.id.nav_lineUp:
                         activityClass = MainActivity.class;
                         break;
+                    case R.id.nav_plan:
+                        Toast.makeText(getApplicationContext(), "No Personal Plan Activity " +
+                                "for now",Toast
+                                .LENGTH_LONG).show();
+                        break;
                     case R.id.nav_map:
                         Toast.makeText(getApplicationContext(), "No Map Activity for now",Toast
                                 .LENGTH_LONG).show();

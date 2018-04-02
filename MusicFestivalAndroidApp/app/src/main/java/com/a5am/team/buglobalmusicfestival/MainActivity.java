@@ -1,6 +1,8 @@
 package com.a5am.team.buglobalmusicfestival;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,12 +13,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.a5am.team.buglobalmusicfestival.Database.DatabaseExecute;
 import com.a5am.team.buglobalmusicfestival.Database.DatabaseTestActivity;
@@ -68,10 +76,15 @@ public class MainActivity extends BaseNavActivity implements
     private ActionBarDrawerToggle mToggle;
     private FrameLayout mFrame;
 
-    private static final String CLIENT_ID = "11dc844e73034ce09b80e978c27a6931";
-    private static final String REDIRECT_URI = "myapp://callback";
+
+    private static final String CLIENT_ID = "secrete";
+    private static final String REDIRECT_URI = "secrete";
     private Player mPlayer;
     private static final int REQUEST_CODE = 1337;
+    private ListView listView;
+    private MainCalendarAdapter mcAdapter;
+    private CheckBox cb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +93,7 @@ public class MainActivity extends BaseNavActivity implements
 
         // init database
         eventExe = new DatabaseExecute(this);
-        if (! eventExe.isDataExist()){
+        if (!eventExe.isDataExist()) {
             eventExe.initTable();
         }
 
@@ -91,17 +104,56 @@ public class MainActivity extends BaseNavActivity implements
         // fetch all data
         eventList = eventExe.getAllDate();
 
+
         //Spotify authentication
         AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID, AuthenticationResponse.Type.TOKEN, REDIRECT_URI);
         builder.setScopes(new String[]{"user-read-private", "streaming"});
         AuthenticationRequest request = builder.build();
 
         AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
+
+//        listView = (ListView) findViewById(R.id.mcEventList);
+//        ArrayList<MainCalendarEvents> eventList = new ArrayList<>();
+//        eventList.add(new MainCalendarEvents("Jupiter & Okwess", "Country: Congo", "GSU"));
+//        eventList.add(new MainCalendarEvents("Ladama", "Country: Latin America - Brazil, Colombia, Venezuela", "GSU"));
+//        eventList.add(new MainCalendarEvents("Dina Elwedidi", "Country: Egypt", "CAS"));
+//        eventList.add(new MainCalendarEvents("Orquesta El Macabeo", "Country: Puerto Rico", "GSU"));
+//        eventList.add(new MainCalendarEvents("Zhou Family", "Country: China", "GSU"));
+//        eventList.add(new MainCalendarEvents("Kaumakaiwa Kanaka'ole", "Country: Hawai'i", "CAS"));
+
+        if (eventList != null){
+            mcAdapter = new MainCalendarAdapter(this, eventList);
+            listView.setAdapter(mcAdapter);
+        }
+
+    }
+
+    //Checkbox
+    public void onCheckboxClicked (AdapterView<?> parent, View view, int position, long id){
+        cb = findViewById(R.id.cb);
+        boolean checked = cb.isChecked();
+        switch ((view.getId())){
+            case R.id.cb:
+                if (checked){
+                    cb.setChecked(true);
+                    Toast.makeText(this,"checkbox checked",Toast.LENGTH_LONG).show();
+
+//                    //add to personal planner
+//                    long itemID = parent.getItemIdAtPosition(position).getItemID();
+//                    int itemID = mcAdapter.getItemId(position);
+//                    Intent i = new Intent(MainActivity.this, PersonalPlanner.class);
+//                    i.putExtra("event", itemID);
+//                    startActivity(i);
+                }
+                break;
+        }
+
     }
 
 
     private void initComponent(){
-        // Component Init in here
+        // listViewDatabase is used to check database
+        listView = findViewById(R.id.mcEventList);
     }
 
 
