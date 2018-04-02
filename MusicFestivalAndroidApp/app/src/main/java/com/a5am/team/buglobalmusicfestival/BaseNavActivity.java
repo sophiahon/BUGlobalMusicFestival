@@ -213,6 +213,10 @@ public class BaseNavActivity extends AppCompatActivity {
                     case R.id.nav_spotify:
                         activityClass = Spotify_test.class;
                         break;
+
+                    case R.id.nav_youtube_test:
+                        activityClass = youtube_test.class;
+                        break;
                 }
                 if (activityClass != null) {
                     startActivity(new Intent(BaseNavActivity.this, activityClass));
