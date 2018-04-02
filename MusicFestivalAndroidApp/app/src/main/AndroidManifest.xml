@@ -57,6 +57,9 @@
         <activity android:name=".mapactivity"
             android:label="Map"></activity>
 
+        <activity android:name=".youtube_test"
+            android:label="Toutube Test"/>
+        
     </application>
 
 
