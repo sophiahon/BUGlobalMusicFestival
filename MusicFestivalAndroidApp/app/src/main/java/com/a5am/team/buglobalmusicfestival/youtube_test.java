@@ -26,6 +26,7 @@ public class youtube_test extends YouTubeBaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube_test);
 
+
         btn = findViewById(R.id.btn);
         ytb = (YouTubePlayerView) findViewById(R.id.ytb);
 
@@ -48,7 +49,5 @@ public class youtube_test extends YouTubeBaseActivity{
             }
         });
     }
-
-
 
 }

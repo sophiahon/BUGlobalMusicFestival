@@ -40,6 +40,9 @@
 
         </activity>
 
+        <activity android:name=".mapactivity"
+            android:label="Map"></activity>
+
         <activity android:name=".ArtistInfo"
             android:label="Artist introduction">
         </activity>
@@ -48,7 +51,8 @@
             android:name="com.spotify.sdk.android.authentication.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
-
+        <activity android:name=".youtube_test"
+            android:label="Youtube Test"/>
 
     </application>
 

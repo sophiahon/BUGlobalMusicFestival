@@ -193,6 +193,7 @@ public class BaseNavActivity extends AppCompatActivity {
 //                        BaseNavActivity.this, R.anim.fade_in, R.anim.fade_out).toBundle();
                 Class activityClass = null;
                 switch (mItemToOpenWhenDrawerCloses) {
+
                     case R.id.nav_lineUp:
                         activityClass = MainActivity.class;
                         break;
@@ -209,6 +210,9 @@ public class BaseNavActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_databaseTest:
                         activityClass = DatabaseTestActivity.class;
+                        break;
+                    case R.id.nav_Youtube_test:
+                        activityClass = youtube_test.class;
                         break;
                 }
                 if (activityClass != null) {
