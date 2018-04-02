@@ -202,8 +202,7 @@ public class BaseNavActivity extends AppCompatActivity {
                                 .LENGTH_LONG).show();
                         break;
                     case R.id.nav_map:
-                        Toast.makeText(getApplicationContext(), "No Map Activity for now",Toast
-                                .LENGTH_LONG).show();
+                        activityClass = mapactivity.class;
                         break;
                     case R.id.nav_artInfo:
                         activityClass = ArtistInfo.class;
