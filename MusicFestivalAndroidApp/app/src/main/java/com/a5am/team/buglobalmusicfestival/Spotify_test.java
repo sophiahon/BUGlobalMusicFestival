@@ -3,7 +3,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
+import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
@@ -70,6 +70,7 @@ public class Spotify_test extends BaseNavActivity implements
     @Override
     protected void onDestroy() {
         Spotify.destroyPlayer(this);
+        Log.e("MainActivity", "!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         super.onDestroy();
     }
 
