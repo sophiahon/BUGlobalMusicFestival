@@ -54,6 +54,9 @@
             android:name="com.spotify.sdk.android.authentication.LoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <activity android:name=".mapactivity"
+            android:label="Map"></activity>
+
     </application>
 
 
