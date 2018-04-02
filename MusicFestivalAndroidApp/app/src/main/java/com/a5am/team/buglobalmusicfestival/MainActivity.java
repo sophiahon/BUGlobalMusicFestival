@@ -107,7 +107,8 @@ public class MainActivity extends BaseNavActivity {
                     cb.setChecked(true);
                     Toast.makeText(this,"checkbox checked",Toast.LENGTH_LONG).show();
 
-                    long itemID = parent.getItemIdAtPosition(position).getItemID();
+                    //long itemID = parent.getItemIdAtPosition(position).getItemID();
+                    int itemID = mcAdapter.getItemId(position);
 
                     //add to personal planner
                     Intent i = new Intent(MainActivity.this, PersonalPlanner.class);
