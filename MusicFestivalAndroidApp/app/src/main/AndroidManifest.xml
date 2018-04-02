@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.a5am.team.buglobalmusicfestival">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <permission
@@ -14,7 +17,6 @@
 
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,11 +24,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+                  
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB6eEfXgOb_3B9WL0ioPvBAzRVv-onryXA" />
 
         <activity android:name=".MainActivity"
+
             android:label="@string/nav_lineUp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,18 +38,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+      
+        <activity
+            android:name=".Database.DatabaseTestActivity"
+            android:label="@string/nav_dbTest" />
+        <activity
+            android:name=".ArtistInfo"
+            android:label="Artist introduction" />
 
-        <activity android:name=".Database.DatabaseTestActivity"
-            android:label="@string/nav_dbTest">
 
-        </activity>
+
+
 
         <activity android:name=".mapactivity"
             android:label="Map"></activity>
 
-        <activity android:name=".ArtistInfo"
-            android:label="Artist introduction">
-        </activity>
+
 
         <activity
             android:name="com.spotify.sdk.android.authentication.LoginActivity"
@@ -54,9 +62,19 @@
         <activity android:name=".youtube_test"
             android:label="Youtube Test"/>
 
+      
+        <activity android:name=".Spotify_test"
+            android:label="Spotify_Test"/>
+
+        <activity
+            android:name="com.spotify.sdk.android.authentication.LoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
     </application>
+
 
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
 
 </manifest>
