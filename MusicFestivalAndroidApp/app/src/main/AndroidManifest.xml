@@ -38,7 +38,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-      
+
+        <activity android:name=".PersonalPlanner"
+            android:label="Personal Planner"/>
+
         <activity
             android:name=".Database.DatabaseTestActivity"
             android:label="@string/nav_dbTest" />
