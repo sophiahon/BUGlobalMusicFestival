@@ -15,9 +15,9 @@ public class PersonalPlanner extends BaseNavActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.personal_planner);
 
-        Bundle bundle = getIntent().getExtras();
-        int event = bundle.getInt("event");
-        Toast.makeText(PersonalPlanner.this,event,Toast.LENGTH_LONG).show();
+//        Bundle bundle = getIntent().getExtras();
+//        int event = bundle.getInt("event");
+//        Toast.makeText(PersonalPlanner.this,event,Toast.LENGTH_LONG).show();
 
     }
 
