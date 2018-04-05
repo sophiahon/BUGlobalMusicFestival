@@ -197,6 +197,7 @@ public class BaseNavActivity extends AppCompatActivity {
                         activityClass = MainActivity.class;
                         break;
                     case R.id.nav_plan:
+                        //activityClass = PersonalPlanner.class;
                         Toast.makeText(getApplicationContext(), "No Personal Plan Activity " +
                                 "for now",Toast
                                 .LENGTH_LONG).show();

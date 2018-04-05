@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -84,6 +86,9 @@ public class MainActivity extends BaseNavActivity {
     private MainCalendarAdapter mcAdapter;
     private CheckBox cb;
 
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +107,19 @@ public class MainActivity extends BaseNavActivity {
 
         // fetch all data
         eventList = eventExe.getAllDate();
+
+        //tab
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
 
         //Spotify authentication
@@ -137,9 +155,9 @@ public class MainActivity extends BaseNavActivity {
                     cb.setChecked(true);
                     Toast.makeText(this,"checkbox checked",Toast.LENGTH_LONG).show();
 
-                    Intent i = new Intent(MainActivity.this,PersonalPlanner.class);
-                    i.putExtra("event", view.getId());
-                    startActivity(i);
+//                    Intent i = new Intent(MainActivity.this,PersonalPlanner.class);
+//                    i.putExtra("event", view.getId());
+//                    startActivity(i);
 
 //                    //add to personal planner
 //                    long itemID = parent.getItemIdAtPosition(position).getItemID();
