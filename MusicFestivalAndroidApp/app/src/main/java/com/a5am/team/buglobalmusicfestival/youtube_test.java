@@ -1,5 +1,6 @@
 package com.a5am.team.buglobalmusicfestival;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,15 +10,17 @@ import android.widget.Toast;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
 
 
 
-public class youtube_test extends YouTubeBaseActivity{
+public class youtube_test extends BaseNavActivity {
 
-    private Button btn;
+    //private Button btn;
     private YouTubePlayerView ytb;
-    private YouTubePlayer.OnInitializedListener onInitializedListener;
+
+    //private YouTubePlayer.OnInitializedListener onInitializedListener;
     private final String API_KEY = "AIzaSyBOitEsuiC4-Hbh8EJOMhAPIbJ0tQ8GS3U";
     private final String VIDEO_CODE ="zTz1v8aJeKg";
 
@@ -26,8 +29,19 @@ public class youtube_test extends YouTubeBaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube_test);
 
-        btn = findViewById(R.id.btn);
-        ytb = (YouTubePlayerView) findViewById(R.id.ytb);
+        //btn = findViewById(R.id.btn);
+        initializeToolbar();
+
+        YoutubeFragment fragment = new YoutubeFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction()
+                .replace(R.id.ytb_test, fragment)
+                .addToBackStack(null)
+                .commit();
+
+        //ytb = (YouTubePlayerView) findViewById(R.id.ytb);
+
+/***
 
         onInitializedListener = new YouTubePlayer.OnInitializedListener() {
             @Override
@@ -47,8 +61,10 @@ public class youtube_test extends YouTubeBaseActivity{
                 ytb.initialize(API_KEY, onInitializedListener);
             }
         });
+
+
+***/
+
+
     }
-
-
-
 }
