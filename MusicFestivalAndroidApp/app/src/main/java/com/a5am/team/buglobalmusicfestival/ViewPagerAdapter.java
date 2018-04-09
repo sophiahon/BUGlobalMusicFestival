@@ -17,6 +17,12 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        if (position == 0){
+            return new CalanderFragment();
+        }
+        else if (position ==1){
+            return TabFragment.getInstance(position);
+        }
         return TabFragment.getInstance(position);
     }
 
