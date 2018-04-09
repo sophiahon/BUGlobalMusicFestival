@@ -50,14 +50,12 @@
             android:layout_below="@+id/toolbar_container" >
 
 
-            <ListView
-                android:id="@+id/mcEventList"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="#ffffff"
-                android:dividerHeight="4dip"
-                android:footerDividersEnabled="false"
-                android:headerDividersEnabled="false" />
+                android:name = "com.a5am.team.buglobalmusicfestival.CalanderFragment">
+
+            </FrameLayout>
 
         </FrameLayout>
 

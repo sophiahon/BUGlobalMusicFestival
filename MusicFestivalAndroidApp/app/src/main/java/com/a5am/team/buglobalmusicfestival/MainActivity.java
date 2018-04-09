@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -102,7 +103,8 @@ public class MainActivity extends BaseNavActivity {
         }
 
         // init component
-        initComponent();
+        //initComponent();
+
         initializeToolbar();
 
         // fetch all data
@@ -138,10 +140,16 @@ public class MainActivity extends BaseNavActivity {
 //        eventList.add(new MainCalendarEvents("Zhou Family", "Country: China", "GSU"));
 //        eventList.add(new MainCalendarEvents("Kaumakaiwa Kanaka'ole", "Country: Hawai'i", "CAS"));
 
+        /*** the old code for creating the list view
         if (eventList != null){
             mcAdapter = new MainCalendarAdapter(this, eventList);
             listView.setAdapter(mcAdapter);
         }
+        ***/
+
+        CalanderFragment calanderFragment = new CalanderFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().add(calanderFragment, "Youtube").commit();
 
     }
 
