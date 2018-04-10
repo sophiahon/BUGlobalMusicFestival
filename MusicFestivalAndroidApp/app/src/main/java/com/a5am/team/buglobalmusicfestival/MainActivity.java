@@ -128,7 +128,7 @@ public class MainActivity extends BaseNavActivity {
 //        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID, AuthenticationResponse.Type.TOKEN, REDIRECT_URI);
 //        builder.setScopes(new String[]{"user-read-private", "streaming"});
 //        AuthenticationRequest request = builder.build();
-//
+
 //        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
 
 //        listView = (ListView) findViewById(R.id.mcEventList);
@@ -150,8 +150,8 @@ public class MainActivity extends BaseNavActivity {
         CalanderFragment calanderFragment = new CalanderFragment();
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().add(calanderFragment, "Youtube").commit();
-
     }
+
 
     //Checkbox
     public void onCheckboxClicked (View view){
